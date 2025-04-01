@@ -1,6 +1,5 @@
 import pytest
 import allure
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -136,7 +135,7 @@ class TestBookFiltering:
         popularity_option = wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[contains(text(), 'По популярности')]")))
         popularity_option.click()
-        time.sleep(2)
+        wait.until(EC.url_contains("popular"))
         assert "popular" in driver.current_url.lower()
 
     @allure.story("Newness Filter")
@@ -149,7 +148,7 @@ class TestBookFiltering:
         newness_option = wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[contains(text(), 'По новизне')]")))
         newness_option.click()
-        time.sleep(2)
+        wait.until(EC.url_contains("new"))
         assert "new" in driver.current_url.lower()
 
     @allure.story("Price Filter")
@@ -162,7 +161,7 @@ class TestBookFiltering:
         price_high_option = wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[contains(text(), 'Сначала дорогие')]")))
         price_high_option.click()
-        time.sleep(2)
+        wait.until(EC.url_contains("price-desc"))
         assert "price-desc" in driver.current_url.lower()
 
     @allure.story("Price Filter")
@@ -175,7 +174,7 @@ class TestBookFiltering:
         price_low_option = wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[contains(text(), 'Сначала дешевые')]")))
         price_low_option.click()
-        time.sleep(2)
+        wait.until(EC.url_contains("price-asc"))
         assert "price-asc" in driver.current_url.lower()
 
     @allure.story("Rating Filter")
@@ -188,5 +187,5 @@ class TestBookFiltering:
         four_stars = wait.until(EC.element_to_be_clickable(
             (By.CSS_SELECTOR, "[data-test='rating-4']")))
         four_stars.click()
-        time.sleep(2)
+        wait.until(EC.url_contains("rating=4"))
         assert "rating=4" in driver.current_url.lower()
