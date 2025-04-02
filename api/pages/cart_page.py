@@ -1,11 +1,11 @@
 from api.base_client import BaseClient
 import allure
 import json
-
+import requests
 
 class CartPage(BaseClient):
     @allure.step("Add product to cart")
-    def add_product(self, product_id: int, ad_data: dict = None) -> dict:
+    def add_product(self, product_id: int, ad_data: dict = None) -> requests.Response:
         data = {"id": product_id}
         if ad_data:
             data["adData"] = ad_data
@@ -29,7 +29,7 @@ class CartPage(BaseClient):
         try:
             cart_items = self.get_cart_items()
             if not isinstance(cart_items, list):
-                return None
+                raise ValueError("Invalid cart items response")
             for item in cart_items:
                 if (isinstance(item, dict) and
                         item.get("goodsId") == product_id):

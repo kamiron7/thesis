@@ -1,10 +1,10 @@
 # E-commerce Test Automation Framework
 
 ## Overview
-This project is a test automation framework designed to test both API and UI functionalities of an e-commerce platform. The framework implements automated tests for critical features such as shopping cart operations and bookmarks management.
 
-## Project Structure
-```
+This project is a test automation framework designed to test both API and UI functionalities of the e-commerce platform Chitai-Gorod (https://www.chitai-gorod.ru/). The framework implements automated tests for critical features such as shopping cart operations and bookmarks management.
+
+## Project Structure```
 ├── api/
 │   └── pages/         # Page object models for API testing
 ├── config/

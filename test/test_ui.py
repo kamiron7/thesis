@@ -54,7 +54,7 @@ class TestSearch:
                 (By.CSS_SELECTOR, "[data-test='search-results']")))
             assert "Ничего не найдено" in results.text
         except TimeoutException:
-            assert True
+            pytest.fail("Expected 'Ничего не найдено' message but element was not found")
 
     @allure.story("Valid Search")
     @allure.title("Search with valid input")
